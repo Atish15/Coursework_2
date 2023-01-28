@@ -24,7 +24,7 @@ let app = new Vue({
 
     created:function(){
       //  fetch("http://localhost:3000/collections/products")
-            fetch("http://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products")
+            fetch("https://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products")
                 .then(function (response){
                 response.json().then(
                     function (json){
@@ -55,7 +55,7 @@ let app = new Vue({
             let ndat={};
             for(let b=0;b<this.minicart.length;b++){
                 let rspaces=this.itemCount(this.minicart[b].id);
-                fetch("http://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products/"+this.minicart[b].id,{
+                fetch("https://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products/"+this.minicart[b].id,{
                     method:"PUT",
                     headers:{
                         "Content-Type":"application/json",
@@ -85,7 +85,7 @@ let app = new Vue({
                 phonenumber: this.phonenumber,
                 productDetails:ncart,
             };
-            fetch("http://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/order",{
+            fetch("https://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/order",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json",
@@ -193,7 +193,7 @@ let app = new Vue({
                // let foundsomething = false;
                 let searchTerm=this.newTask.replace(/" "/g,"%20");
                 console.log(searchTerm);
-                fetch("http://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products/search?q="+searchTerm,{
+                fetch("https://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products/search?q="+searchTerm,{
                     method:"GET",
                     headers:{
                         "Content-Type":"application/json",
