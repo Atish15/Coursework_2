@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "6b8095c3-4899-4e63-9a34-0705f4ccaa31",
+		"name": "Products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25548650"
+	},
+	"item": [
+		{
+			"name": "ReadAll",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Test\",function(){\r",
+							"pm.response.to.have.status(200);\r",
+							"var json=pm.response.json();\r",
+							"pm.expect(json[0].id).to.equal(\"1002\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products",
+					"protocol": "https",
+					"host": [
+						"courseworkapp-env",
+						"eba-z4p932sy",
+						"eu-west-2",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"collections",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Test\",function(){\r",
+							"pm.response.to.have.status(200);\r",
+							"var json=pm.response.text();\r",
+							"pm.expect(json).to.equal(\"Success in saving the order\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Postman\",\r\n  \"phonenumber\": \"1234567890\",\r\n  \"productDetails\": [\r\n    {\r\n      \"id\": \"1002\",\r\n      \"subject\": \"Music\",\r\n      \"location\": \"London\",\r\n      \"price\": \" 150\",\r\n      \"spaces\": 2\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/order",
+					"protocol": "https",
+					"host": [
+						"courseworkapp-env",
+						"eba-z4p932sy",
+						"eu-west-2",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"collections",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Test\",function(){\r",
+							"pm.response.to.have.status(200);\r",
+							"var json=pm.response.json();\r",
+							"pm.expect(json.modifiedCount).to.equal(1);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"count\":3}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products/1002",
+					"protocol": "https",
+					"host": [
+						"courseworkapp-env",
+						"eba-z4p932sy",
+						"eu-west-2",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"collections",
+						"products",
+						"1002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Test\",function(){\r",
+							"pm.response.to.have.status(200);\r",
+							"var json=pm.response.json();\r",
+							"pm.expect(json[0][0].subject).to.equal(\"Maths\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://courseworkapp-env.eba-z4p932sy.eu-west-2.elasticbeanstalk.com/collections/products/search?q=Math",
+					"protocol": "https",
+					"host": [
+						"courseworkapp-env",
+						"eba-z4p932sy",
+						"eu-west-2",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"collections",
+						"products",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Math"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
